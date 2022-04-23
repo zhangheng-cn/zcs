@@ -27,6 +27,7 @@
 #include "util.h"
 #include "singleton.h"
 #include "mutex.h"
+#include "thread.h"
 
 //static std::string thread_name("name");
 // std::string& GetThreadName() { 
@@ -233,7 +234,7 @@ public:
 private:
     std::string filename_;
     std::ofstream filestream_;
-    uint64_t last_time_;
+    uint64_t last_time_ = 0;
 };
 
 class LogEventWrap {

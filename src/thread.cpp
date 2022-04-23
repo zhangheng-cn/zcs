@@ -22,7 +22,6 @@ void Thread::Join() {
 Thread::Thread(std::function<void()> cb, const std::string& name)
     :cb_(cb)
     ,name_(name) {
-    ZCS_INFO(g_logger) << "Thread constructor!";
     if(name.empty()) {
         name_ = "UNKONW";
     }

@@ -1,0 +1,19 @@
+2022-04-23 16:34:54	13891	UNKONW	888	[DEBUG]	[root]	/home/zh/code/zcs/tests/test_config.cpp:166	[change happend]old : [person : name -  age - 0 sex - 0] new :[person : name - zh age - 25 sex - 1]
+2022-04-23 16:34:54	13891	UNKONW	888	[DEBUG]	[root]	/home/zh/code/zcs/tests/test_config.cpp:172	after class person [person : name - zh age - 25 sex - 1]
+2022-04-23 16:34:54	13891	UNKONW	888	[DEBUG]	[root]	/home/zh/code/zcs/tests/test_config.cpp:173	after name : zh1 value : [person : name - z age - 24 sex - 0]
+2022-04-23 16:34:54	13891	UNKONW	888	[DEBUG]	[root]	/home/zh/code/zcs/tests/test_config.cpp:173	after name : zh2 value : [person : name - zz age - 22 sex - 1]
+2022-04-23 16:34:54	13891	UNKONW	888	[DEBUG]	[root]	/home/zh/code/zcs/tests/test_config.cpp:173	size : 2
+2022-04-23 16:34:54	13891	UNKONW	888	[DEBUG]	[root]	/home/zh/code/zcs/tests/test_config.cpp:174	after : v1:
+  - name: x1
+    age: 11
+    sex: false
+  - name: x2
+    age: 12
+    sex: true
+v2:
+  - name: xx1
+    age: 11
+    sex: false
+  - name: xx2
+    age: 12
+    sex: true
