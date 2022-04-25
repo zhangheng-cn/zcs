@@ -171,6 +171,7 @@ public:
     void SetLevel(LogLevel::Level level) { level_ = level;};
     LogLevel::Level GetLevel() const { return level_;};
 
+    virtual std::string ToYamlString() = 0;
 protected:
     MutexType mutex_;
     LogLevel::Level level_ = LogLevel::DEBUG;
@@ -204,6 +205,8 @@ public:
     LogLevel::Level GetLevel() const { return level_;}
 
     std::string GetName() const { return name_;}
+
+    std::string ToYamlString();
 private:
     MutexType mutex_;
     std::string name_;
@@ -221,6 +224,7 @@ class StdoutLogAppender : public LogAppender {
 public:
     typedef std::shared_ptr<StdoutLogAppender> ptr;
     void Log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
+    std::string ToYamlString() override;
 private:
 };
 
@@ -231,6 +235,8 @@ public:
     void Log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
 
     bool Reopen();
+
+    std::string ToYamlString() override;
 private:
     std::string filename_;
     std::ofstream filestream_;
@@ -254,6 +260,8 @@ public:
     Logger::ptr GetLogger(const std::string& name);
     Logger::ptr GetRoot() const { return root_;}
     void Init();
+
+    std::string ToYamlString();
 private:
     MutexType mutex_;
     Logger::ptr root_;

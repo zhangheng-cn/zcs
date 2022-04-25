@@ -1,5 +1,6 @@
 #include "yaml-cpp/yaml.h"
 #include "zcs.h"
+#include <iostream>
 
 static zcs::Logger::ptr g_log =  ZCS_LOG_ROOT();
 static zcs::Logger::ptr g_system = ZCS_LOG_NAME("system");
@@ -166,7 +167,7 @@ void test_class() {
         ZCS_DEBUG(g_log) << "[change happend]old : " << old_val.ToString() << " new :" << new_val.ToString();
     });
 
-    YAML::Node root = YAML::LoadFile("/home/zh/code/zcs/tests/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/zh/code/zcs/tests/test.yml");
     zcs::Config::LoadFromYaml(root);
 
     XX_MP(g_config_person, "after class person ");
@@ -176,7 +177,13 @@ void test_class() {
 }
 
 void test_log() {
-
+    std::cout << zcs::LoggerMgr::GetInstance()->ToYamlString() << std::endl;
+    
+    ZCS_INFO(g_log) << "logggggggggg";
+    YAML::Node root = YAML::LoadFile("/home/zh/code/zcs/tests/log.yml");
+    zcs::Config::LoadFromYaml(root);
+    ZCS_INFO(g_log) << "logggggggggg";
+    std::cout << zcs::LoggerMgr::GetInstance()->ToYamlString() << std::endl;
 }
 
 int main(int argc, char* argv[]) {
@@ -184,7 +191,7 @@ int main(int argc, char* argv[]) {
     //ZCS_DEBUG(g_log) << root;
     //test_config();
     //print_yaml(root, 0);
-    test_class();
+    //test_class();
     test_log();
     return 0;
 }

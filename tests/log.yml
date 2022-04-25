@@ -1,6 +1,7 @@
 logs:
     - name: root
       level: info
+      formatter: "%t%T[%p]%T%c%T%m%n"
       appenders:
           - type: FileLogAppender
             file: /home/zh/code/zcs/tests/root.txt
@@ -11,54 +12,3 @@ logs:
           - type: FileLogAppender
             file: /home/zh/code/zcs/tests/system.txt
           - type: StdoutLogAppender
-
-system:
-    port: 9999
-    value: 11.1111
-    int_vec:
-        - 11
-        - 12
-        - 13
-        - 19
-    int_list: [111, 222,333]
-    int_set: [2, 3, 4, 2, 4]
-    int_uset: [22, 33, 44, 33]
-    int_map:
-        k: 1
-        k2: 2
-        k3: 3
-    int_umap:
-        ku: 11
-        ku2: 22
-        ku3: 33
-
-
-class:
-    person:
-        name: zh
-        age: 25
-        sex: true
-    map:
-        zh1:
-            name: z
-            age: 24
-            sex: false
-        zh2:
-            name: zz
-            age: 22
-            sex: true
-    map_vec:
-        v1:
-            - name: x1
-              age: 11
-              sex: false
-            - name: x2
-              age: 12
-              sex: true
-        v2:
-            - name: xx1
-              age: 11
-              sex: false
-            - name: xx2
-              age: 12
-              sex: true
