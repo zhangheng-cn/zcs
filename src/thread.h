@@ -21,6 +21,8 @@
 #include <pthread.h>
 #include <memory>
 
+#include "mutex.h"
+
 namespace zcs {
 /**
  * @brief 
@@ -31,6 +33,7 @@ namespace zcs {
 class Thread {
 public:
     typedef std::shared_ptr<Thread> ptr;
+    
     Thread(std::function<void()> cb, const std::string& name);
     ~Thread();
 
@@ -51,6 +54,7 @@ private:
     pthread_t thread_;
     std::function<void()> cb_;
     std::string name_;
+    Semaphore semaphore_;
 };
 
 } // namespace zcs
