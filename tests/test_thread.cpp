@@ -3,8 +3,9 @@
 //#include <memory>
 #include <pthread.h>
 #include <iostream>
+#include "zcs.h"
 
-zcs::Logger::ptr g_logger = ZCS_LOG_NAME("thread");
+zcs::Logger::ptr g_logger = ZCS_LOG_ROOT();
 int count = 1;
 
 zcs::RWMutex s_mutex;
@@ -55,6 +56,8 @@ int main(int argc, char* argv[]) {
     // }
 
     // test mutex log
+    YAML::Node root = YAML::LoadFile("/home/zh/code/zcs/tests/mutex.yml");
+    zcs::Config::LoadFromYaml(root);
     zcs::Thread::ptr thr1(new zcs::Thread(&func2, "MUTEX_1"));
     zcs::Thread::ptr thr2(new zcs::Thread(&func3, "MUTEX_2"));
     thr1->Join();
@@ -67,6 +70,6 @@ int main(int argc, char* argv[]) {
     //  for(size_t i = 0; i < thrs.size(); ++i) {
     //      thrs[i]->Join();
     //  }
-    ZCS_DEBUG(g_logger) << "count =" << count;
+    // ZCS_DEBUG(g_logger) << "count =" << count;
     return 0;
 }

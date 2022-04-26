@@ -1,0 +1,6 @@
+logs:
+    - name: root
+      level: info
+      appenders:
+          - type: FileLogAppender
+            file: /home/zh/code/zcs/tests/mutex.txt

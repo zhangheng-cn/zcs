@@ -19,6 +19,7 @@
 #include <pthread.h>
 #include <stdint.h>
 #include <semaphore.h>
+#include <atomic>
 #include "nocopyable.h"
 
 namespace zcs {
@@ -187,6 +188,49 @@ public:
     void rdlock() {}
     void wrlock() {}
     void unlock() {}
+};
+
+class SpinLock {
+public:
+    typedef ScopedLockImpl<SpinLock> Lock;
+    SpinLock() {
+        pthread_spin_init(&lock_, 0);
+    }
+    ~SpinLock() {
+        pthread_spin_destroy(&lock_);
+    }
+
+    void lock() {
+        pthread_spin_lock(&lock_);
+    }
+
+    void unlock() {
+        pthread_spin_unlock(&lock_);
+    }
+private:
+    pthread_spinlock_t lock_;
+};
+
+class CASLock {
+public:
+    typedef ScopedLockImpl<CASLock> Lock;
+    CASLock() {
+        mutex_.clear();
+    }
+
+    ~CASLock() {
+
+    }
+
+    void lock() {
+        while(std::atomic_flag_test_and_set_explicit(&mutex_, std::memory_order_acquire));
+    }
+
+    void unlock() {
+        std::atomic_flag_clear_explicit(&mutex_, std::memory_order_release);
+    }
+private:
+    volatile std::atomic_flag mutex_;
 };
 
 

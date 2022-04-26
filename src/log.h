@@ -160,7 +160,7 @@ private:
 class LogAppender {
 friend class Logger;
 public:
-    typedef Mutex MutexType;
+    typedef SpinLock MutexType;
     typedef std::shared_ptr<LogAppender> ptr;
     virtual ~LogAppender() {}
 
@@ -183,7 +183,7 @@ class Logger : public std::enable_shared_from_this<Logger> {
 friend class LoggerManager;
 public:
     typedef std::shared_ptr<Logger> ptr;
-    typedef Mutex MutexType;
+    typedef SpinLock MutexType;
     // static Logger* GetInstance() {
     //     static Logger instance;
     //     return &instance;
@@ -254,7 +254,7 @@ private:
 
 class LoggerManager {
 public:
-    typedef Mutex MutexType;
+    typedef SpinLock MutexType;
     LoggerManager();
 
     Logger::ptr GetLogger(const std::string& name);
