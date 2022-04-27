@@ -27,6 +27,7 @@ static void ListAllMember(const std::string& perfix,
 }
 
 ConfigVarBase::ptr Config::LookUpBase(std::string& name) {
+    RWMutexType::ReadLock lock(GetMutex());
     auto it = GetDatas().find(name);
     // ZCS_DEBUG(ZCS_LOG_ROOT()) << "[look up base] name : " << name << ", value :"
     //     << (it == GetDatas().end()) ? " NULL" : it->second->GetName();
@@ -55,6 +56,14 @@ void Config::LoadFromYaml(const YAML::Node& root) {
                 var->FromString(ss.str());
             }
         }
+    }
+}
+
+void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
+    RWMutexType::ReadLock lock(GetMutex());
+    ConfigVarMap& m = GetDatas();
+    for(auto it = m.begin(); it != m.end(); it++) {
+        cb(it->second);
     }
 }
     

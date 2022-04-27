@@ -23,3 +23,40 @@ v2:
 18772	[INFO]	root	logggggggggg
 19047	[INFO]	root	logggggggggg
 19323	[INFO]	root	logggggggggg
+31355	[INFO]	root	logggggggggg
+31355	[DEBUG]	root	name=class.map_vec description=class map vec person value={}
+31355	[DEBUG]	root	name=class.map description=class map person value={}
+31355	[DEBUG]	root	name=class.person description=class person value=name: ""
+age: 0
+sex: false
+31355	[DEBUG]	root	name=system.int_map description=system int map value=k: 1
+k2: 2
+31355	[DEBUG]	root	name=system.int_uset description=system int uset value=- 3
+- 2
+- 1
+31355	[DEBUG]	root	name=system.int_set description=system int set value=- 1
+- 2
+- 3
+31355	[DEBUG]	root	name=system.int_umap description=system int umap value=k2: 20
+k: 10
+31355	[DEBUG]	root	name=system.int_list description=system int list value=- 1
+- 2
+- 3
+31355	[DEBUG]	root	name=system.int_vec description=system int vec value=- 1
+- 2
+- 3
+31355	[DEBUG]	root	name=system.value description=system value value=13.1400003
+31355	[DEBUG]	root	name=logs description=log config value=- name: root
+  level: INFO
+  formatter: "%t%T[%p]%T%c%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: /home/zh/code/zcs/tests/root.txt
+    - type: StdoutLogAppender
+- name: system
+  level: INFO
+  appenders:
+    - type: FileLogAppender
+      file: /home/zh/code/zcs/tests/system.txt
+    - type: StdoutLogAppender
+31355	[DEBUG]	root	name=system.port description=system port value=8080

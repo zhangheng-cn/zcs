@@ -673,7 +673,7 @@ zcs::ConfigVar<std::set<LogDefine> >::ptr g_log_defines = zcs::Config::LookUp("l
 
 struct LogIniter {
     LogIniter() {
-        g_log_defines->AddListener(0xFFEEFF, [](const std::set<LogDefine>& new_val, const std::set<LogDefine>& old_val){
+        g_log_defines->AddListener([](const std::set<LogDefine>& new_val, const std::set<LogDefine>& old_val){
             ZCS_INFO(ZCS_LOG_ROOT()) << "***** log config changed *****";
             // (add or change)
             for(auto& i : new_val) {

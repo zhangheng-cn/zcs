@@ -217,9 +217,6 @@ private:
 };
 
 
-
-
-
 class StdoutLogAppender : public LogAppender {
 public:
     typedef std::shared_ptr<StdoutLogAppender> ptr;

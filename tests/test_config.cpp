@@ -163,7 +163,7 @@ void test_class() {
     XX_PM(g_config_map_person, "before ");
     ZCS_DEBUG(g_log) << "before : " << g_config_map_vec_person->ToString();
 
-    g_config_person->AddListener(10, [](const Person& new_val, const Person& old_val){
+    g_config_person->AddListener([](const Person& new_val, const Person& old_val){
         ZCS_DEBUG(g_log) << "[change happend]old : " << old_val.ToString() << " new :" << new_val.ToString();
     });
 
@@ -193,5 +193,12 @@ int main(int argc, char* argv[]) {
     //print_yaml(root, 0);
     //test_class();
     test_log();
+
+    zcs::Config::Visit([](zcs::ConfigVarBase::ptr cf){
+        ZCS_DEBUG(g_log) << "name=" << cf->GetName()
+                         << " description=" << cf->GetDescription()
+                         << " value=" << cf->ToString();
+    });
+
     return 0;
 }
