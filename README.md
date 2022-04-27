@@ -31,7 +31,16 @@ LogAppender
   | SpinLock | 40MB/s |
   | CASLock | 40MB/s |
 # 协程模块
-
+- 基于ucontext实现的协程类
+```cpp
+线程创建一个主协程, 主协程创建子协程, 协程的切换需要通过主协程，子协程之间无法创建切换
+thread --> main_fiber  <--> s5
+           ^   ^   ^ ^
+           |   |   |  \
+           |   |   |   \
+           v   v   v    v
+          s1  s2  s3     s4
+```
 # 参考
 - [https://github.com/qinguoyi/TinyWebServer](https://github.com/qinguoyi/TinyWebServer) 
 - [https://github.com/sylar-yin/sylar](https://github.com/sylar-yin/sylar)

@@ -18,11 +18,18 @@
 
 
 #include <unistd.h>
+#include <vector>
+#include <stdint.h>
+#include <string>
 
 namespace zcs {
 
 pid_t GetThreadId();
 pid_t GetFiberId();
+
+void Backtrace(std::vector<std::string>& bt, uint32_t size = 64, uint32_t skip = 1);
+std::string BacktraceToString(uint32_t size = 64, uint32_t skip = 2, const std::string& perfix = "");
+
 
 }
 

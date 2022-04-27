@@ -58,6 +58,13 @@ add_executable(test_config "tests/test_config.cpp")
 target_link_libraries(test_config ${LIBS})
 force_redefine_file_macro_for_sources (test_config)
 
+add_executable(test_util "tests/test_util.cpp")
+target_link_libraries(test_util ${LIBS})
+force_redefine_file_macro_for_sources (test_util)
+
+add_executable(test_fiber "tests/test_fiber.cpp")
+target_link_libraries(test_fiber ${LIBS})
+force_redefine_file_macro_for_sources (test_fiber)
 
 #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

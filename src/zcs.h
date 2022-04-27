@@ -24,5 +24,7 @@
 #include "thread.h"
 #include "time.h"
 #include "util.h"
+#include "fiber.h"
+#include "macro.h"
 
 #endif //__ZCS_H__
