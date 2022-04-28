@@ -66,5 +66,9 @@ add_executable(test_fiber "tests/test_fiber.cpp")
 target_link_libraries(test_fiber ${LIBS})
 force_redefine_file_macro_for_sources (test_fiber)
 
+add_executable(test_scheduler "tests/test_scheduler.cpp")
+target_link_libraries(test_scheduler ${LIBS})
+force_redefine_file_macro_for_sources (test_scheduler)
+
 #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

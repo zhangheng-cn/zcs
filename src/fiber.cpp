@@ -9,8 +9,8 @@ namespace zcs {
 
 static Logger::ptr g_logger = ZCS_LOG_NAME("system");
 
-static std::atomic<uint64_t> s_fiber_id {0};
-static std::atomic<uint64_t> s_fiber_count {0};
+static std::atomic<uint64_t> s_fiber_id {0};                // 
+static std::atomic<uint64_t> s_fiber_count {0};             // 
 
 static thread_local Fiber* t_fiber = nullptr;               // 当前协程
 static thread_local Fiber::ptr t_thread_fiber = nullptr;    // 主协程
@@ -39,7 +39,7 @@ Fiber::Fiber() {
         ZCS_ASSERT2(false, "getcontext error");
     }
     ++s_fiber_count;
-    ZCS_DEBUG(g_logger) << "Fiber::Fiber main_fiber_id=" << id_ << " total fiber: " << TotalFibers();
+    // ZCS_DEBUG(g_logger) << "Fiber::Fiber main_fiber_id=" << id_ << " total fiber: " << TotalFibers();
 }
 
 Fiber::Fiber(std::function<void()> cb, size_t stacksize)
@@ -58,7 +58,7 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize)
     ctx_.uc_stack.ss_size = stacksize_;
 
     makecontext(&ctx_, &Fiber::MainFunc, 0);
-    ZCS_DEBUG(g_logger) << "Fiber::Fiber fiber_id=" << id_ << " total fiber: " << TotalFibers();
+    // ZCS_DEBUG(g_logger) << "Fiber::Fiber fiber_id=" << id_ << " total fiber: " << TotalFibers();
 }
 
 Fiber::~Fiber() {
@@ -75,7 +75,7 @@ Fiber::~Fiber() {
             SetThis(nullptr);
         }
     }
-    ZCS_DEBUG(g_logger) << "Fiber::~Fiber fiber_id=" << id_ << " total fiber: " << TotalFibers();
+    // ZCS_DEBUG(g_logger) << "Fiber::~Fiber fiber_id=" << id_ << " total fiber: " << TotalFibers();
 }
 
 void Fiber::Reset(std::function<void()> cb) {
